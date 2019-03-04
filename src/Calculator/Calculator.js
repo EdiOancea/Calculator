@@ -1,21 +1,10 @@
-import React, { Component } from 'react'
-import TextInput from './../TextInput/TextInput'
+import React, { Component } from 'react';
 
 class Calculator extends Component {
-    constructor() {
-        super();
-        this.state = {
-            current: 0,
-            next: 0
-        }
-    }
-
-    
-
     render() {
         return (
-            <TextInput/>
-        )
+            <p>calculator</p>
+        );
     }
 }
 
