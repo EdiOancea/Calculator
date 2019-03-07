@@ -2,16 +2,16 @@ import React from 'react';
 import Button from './Button';
 import styles from 'styled-components';
 
-const Buttons = () => {
-
+const Buttons = ({ clear }) => {
   const Box = styles.div`
     width: 200px;
     height: 250px;
     overflow-y: auto;
-  `
+  `;
+  
   return(
     <Box>
-      <Button text={'AC'} color={'darkGray'}/>
+      <Button text={'AC'} color={'darkGray'} onClick={clear}/>
       <Button text={'+/-'} color={'darkGray'}/>
       <Button text={'%'} color={'darkGray'}/>
       <Button text={'÷'} color={'orange'}/>
