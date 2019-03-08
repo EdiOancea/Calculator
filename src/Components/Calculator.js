@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Buttons from './Buttons';
-import Display from './Display';
 
 class Calculator extends Component {
   constructor() {
@@ -37,7 +36,6 @@ class Calculator extends Component {
   render() {
     return (
       <div>
-        <Display text={this.state.displayed}/>
         <Buttons clear={() => this.clear()} addDigit={digit => this.addDigit(digit)}/>
       </div>
     );
