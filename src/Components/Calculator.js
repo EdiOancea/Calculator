@@ -1,51 +1,44 @@
 import React, { Component } from 'react';
 import Buttons from './Buttons';
+import Display from './Display';
 
 class Calculator extends Component {
   constructor() {
     super();
     this.state = {
-      a: 0,
-      b: 0,
+      a: '0',
+      b: '0',
       operation: '',
-      displayed: 0,
+      displayed: '0',
     }
   }
 
   clear() {
-    this.setState({ a:0, b:0, operation:'', displayed:0 });
+    this.setState({ a: '0', b: '0', operation: '', displayed: '0' });
   }
 
-  addDigit() {
-    /*
-    const { a, b, operation} = this.state;
+  addDigit(digit) {
+    const { a, b, operation } = this.state;
     if(operation === '') {
-      if(a === 0 && digit !== 0) {
-        this.setState({ a: digit, displayed: a });
-      } else if(Number.isInteger(a)) {
-        this.setState({ a: a * 10 + digit, displayed: a });
-      } else {
-        this.setState({ a: parseFloat(a.toString().concat(digit)), displayed: a });
+      if(a === '0') {
+        this.setState({ a: digit, displayed: digit });
+      } else if (a.length < 9) {
+        this.setState({ a: a.concat(digit), displayed: a.concat(digit) });
       }
     } else {
-      if(b === 0 && digit !== 0) {
-        this.setState({ b: digit, displayed: b });
-      } else if(Number.isInteger(b)) {
-        this.setState({ b: b * 10 + digit, displayed: b });
-      } else {
-        this.setState({ b: parseFloat(a.toString().concat(digit)), displayed: b });
+      if(b === 0) {
+        this.setState({ b: digit, displayed: digit });
+      } else if (b.length < 9) {
+        this.setState({ b: b.concat(digit), displayed: b.concat(digit) });
       }
     }
-    */
-    console.log("gucci mane");
   }
-
 
   render() {
     return (
       <div>
-        {this.state.displayed}
-        <Buttons methods={methods}/>
+        <Display text={this.state.displayed}/>
+        <Buttons clear={() => this.clear()} addDigit={digit => this.addDigit(digit)}/>
       </div>
     );
   }
