@@ -33,7 +33,7 @@ class Calculator extends Component {
         this.setState({ a: a.concat(digit), displayed: a.concat(digit) });
       }
     } else {
-      if (b === 0) {
+      if (b === '0') {
         this.setState({ b: digit, displayed: digit });
       } else if (b.length < 9) {
         this.setState({ b: b.concat(digit), displayed: b.concat(digit) });
@@ -50,7 +50,7 @@ class Calculator extends Component {
       if (b.slice(-1) === '.') {
         this.setState({ b: b.slice(0, -1) });
       }
-      const toBeDisplayed = eval(`${parseFloat(a)} ${operation} ${parseFloat(b)}`);
+      const toBeDisplayed = eval(`${parseFloat(a)} ${operation} ${parseFloat(b)}`).toString();
       this.setState({ 
         displayed: toBeDisplayed,
         a: toBeDisplayed,
@@ -85,7 +85,7 @@ class Calculator extends Component {
     const { a, b, operation } = this.state;
     if (operation === '' && !a.includes('.')) {
       this.setState({ a: a.concat('.'), displayed: a.concat('.') });
-    } else if (operation !== '' && !b.includes(',')) {
+    } else if (operation !== '' && !b.includes('.')) {
       this.setState({ b: b.concat('.'), displayed: b.concat('.') });
     }
   }
