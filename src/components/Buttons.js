@@ -2,7 +2,7 @@ import React from 'react';
 import Button from './Button';
 import styles from 'styled-components';
 
-const Buttons = ({ clear }) => {
+const Buttons = ({ clear, equalityHandler }) => {
   const Box = styles.div`
     width: 200px;
     height: 250px;
@@ -29,7 +29,7 @@ const Buttons = ({ clear }) => {
       <Button text={'+'} color={'orange'}/>
       <Button text={'0'} size={'big'}/>
       <Button text={','}/>
-      <Button text={'='} color={'orange'}/>
+      <Button text={'='} color={'orange'} onClick={equalityHandler}/>
     </Box>
   );
 };
