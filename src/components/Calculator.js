@@ -6,11 +6,18 @@ class Calculator extends Component {
   constructor() {
     super();
     this.state = {
-      a: '1.1',
-      b: '1.2',
-      operation: '+',
+      a: '0',
+      b: '0',
+      operation: '',
       displayed: '0',
     }
+  }
+
+  setBinaryOperator(operator) {
+    if (operator !== '') {
+      this.equalityHandler();
+    } 
+    this.setState({ operation: operator });
   }
 
   clear() {
@@ -19,14 +26,14 @@ class Calculator extends Component {
   
   addDigit(digit) {
     const { a, b, operation } = this.state;
-    if(operation === '') {
-      if(a === '0') {
+    if (operation === '') {
+      if (a === '0') {
         this.setState({ a: digit, displayed: digit });
       } else if (a.length < 9) {
         this.setState({ a: a.concat(digit), displayed: a.concat(digit) });
       }
     } else {
-      if(b === 0) {
+      if (b === 0) {
         this.setState({ b: digit, displayed: digit });
       } else if (b.length < 9) {
         this.setState({ b: b.concat(digit), displayed: b.concat(digit) });
@@ -37,10 +44,10 @@ class Calculator extends Component {
   equalityHandler() {
     const { a, b, operation } = this.state;
     if (operation !== '') {
-      if(a.slice(-1) === '.') {
+      if (a.slice(-1) === '.') {
         this.setState({ a: a.slice(0, -1) });
       }
-      if(b.slice(-1) === '.') {
+      if (b.slice(-1) === '.') {
         this.setState({ b: b.slice(0, -1) });
       }
       const toBeDisplayed = eval(`${parseFloat(a)} ${operation} ${parseFloat(b)}`);
@@ -84,16 +91,16 @@ class Calculator extends Component {
   }
 
   render() {
-    const { a, b, displayed, operation } = this.state;
     return (
       <div>
-        <Display text={`${a}${operation}${b}=${displayed}`}/>
+        <Display text={this.state.displayed}/>
         <Buttons 
           clear={() => this.clear()} 
           addDigit={digit => this.addDigit(digit)}
           equalityHandler={() => this.equalityHandler()}
           reverseSign={() => this.reverseSign()}
           addComa={() => this.addComa()}
+          setBinaryOperator={operator => this.setBinaryOperator(operator)}
         />
       </div>
     );
