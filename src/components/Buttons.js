@@ -2,11 +2,7 @@ import React from 'react';
 import Button from './Button';
 import styles from 'styled-components';
 
-<<<<<<< HEAD:src/Components/Buttons.js
-const Buttons = ({ clear, addDigit }) => {
-=======
-const Buttons = ({ clear, equalityHandler }) => {
->>>>>>> 6985381fa23ec6982df564f91d5f4f80cbd9e6fc:src/components/Buttons.js
+const Buttons = ({ clear, addDigit, equalityHandler }) => {
   const Box = styles.div`
     width: 200px;
     height: 250px;
