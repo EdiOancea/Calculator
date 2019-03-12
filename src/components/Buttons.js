@@ -8,28 +8,78 @@ const Buttons = ({ clear, addDigit, equalityHandler, reverseSign, addComa, setBi
     height: 250px;
     overflow-y: auto;
   `;
-  
+
+  const buttonFunction = symbol => {
+    if (symbol.length === 1 && symbol >= '0' && symbol <= '9') {
+      return () => addDigit(symbol);
+    }
+
+    switch (symbol) {
+      case 'AC':
+        return clear;
+        break;
+      case '+/-':
+        return reverseSign;
+        break;
+      case ',':
+        return addComa;
+        break;
+      case '=':
+        return equalityHandler;
+        break;
+      case '+':
+        return () => setBinaryOperator('+');
+        break;
+      case '-':
+        return () => setBinaryOperator('-');
+        break;
+      case 'x':
+        return () => setBinaryOperator('*');
+        break;
+      case '÷':
+        return () => setBinaryOperator('/');
+        break;
+      case '%':
+        return () => setBinaryOperator('%');
+        break;
+      default:
+        return null;
+    }
+  }
+
+  const config = [
+    { text: 'AC', color: 'darkGray', size: 'small' },
+    { text: '+/-', color: 'darkGray', size: 'small' },
+    { text: '%', color: 'darkGray', size: 'small' },
+    { text: '÷', color: 'orange', size: 'small' },
+    { text: '7', color: 'gray', size: 'small' },
+    { text: '8', color: 'gray', size: 'small' },
+    { text: '9', color: 'gray', size: 'small' },
+    { text: 'x', color: 'orange', size: 'small' },
+    { text: '4', color: 'gray', size: 'small' },
+    { text: '5', color: 'gray', size: 'small' },
+    { text: '6', color: 'gray', size: 'small' },
+    { text: '-', color: 'orange', size: 'small' },
+    { text: '1', color: 'gray', size: 'small' },
+    { text: '2', color: 'gray', size: 'small' },
+    { text: '3', color: 'gray', size: 'small' },
+    { text: '+', color: 'orange', size: 'small' },
+    { text: '0', color: 'gray', size: 'big' },
+    { text: ',', color: 'gray', size: 'small' },
+    { text: '=', color: 'orange', size: 'small' },
+
+  ]
+
   return(
-    <Box>
-      <Button text={'AC'} color={'darkGray'} onClick={clear}/>
-      <Button text={'+/-'} color={'darkGray'} onClick={reverseSign}/>
-      <Button text={'%'} color={'darkGray'} onClick={() => setBinaryOperator('%')}/>
-      <Button text={'÷'} color={'orange'} onClick={() => setBinaryOperator('/')}/>
-      <Button text={'7'} onClick={() => addDigit('7')}/>
-      <Button text={'8'} onClick={() => addDigit('8')}/>
-      <Button text={'9'} onClick={() => addDigit('9')}/>
-      <Button text={'x'} color={'orange'} onClick={() => setBinaryOperator('*')}/>
-      <Button text={'4'} onClick={() => addDigit('4')}/>
-      <Button text={'5'} onClick={() => addDigit('5')}/>
-      <Button text={'6'} onClick={() => addDigit('6')}/>
-      <Button text={'-'} color={'orange'} onClick={() => setBinaryOperator('-')}/>
-      <Button text={'1'} onClick={() => addDigit('1')}/>
-      <Button text={'2'} onClick={() => addDigit('2')}/>
-      <Button text={'3'} onClick={() => addDigit('3')}/>
-      <Button text={'+'} color={'orange'} onClick={() => setBinaryOperator('+')}/>
-      <Button text={'0'} size={'big'} onClick={() => addDigit('0')}/>
-      <Button text={','} onClick={addComa}/>
-      <Button text={'='} color={'orange'} onClick={equalityHandler}/>
+    <Box>{config.map(buttonConfig => {
+          return <Button
+            text={buttonConfig.text}
+            color={buttonConfig.color}
+            onClick={buttonFunction(buttonConfig.text)}
+            size={buttonConfig.size}
+            />;
+          })
+    }
     </Box>
   );
 };
