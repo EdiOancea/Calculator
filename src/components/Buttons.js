@@ -2,7 +2,7 @@ import React from 'react';
 import Button from './Button';
 import styles from 'styled-components';
 
-const Buttons = ({ clear, addDigit, equalityHandler, reverseSign }) => {
+const Buttons = ({ clear, addDigit, equalityHandler, reverseSign, addComa }) => {
   const Box = styles.div`
     width: 200px;
     height: 250px;
@@ -28,7 +28,7 @@ const Buttons = ({ clear, addDigit, equalityHandler, reverseSign }) => {
       <Button text={'3'} onClick={() => addDigit('3')}/>
       <Button text={'+'} color={'orange'}/>
       <Button text={'0'} size={'big'} onClick={() => addDigit('0')}/>
-      <Button text={','}/>
+      <Button text={','} onClick={addComa}/>
       <Button text={'='} color={'orange'} onClick={equalityHandler}/>
     </Box>
   );

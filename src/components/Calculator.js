@@ -37,6 +37,12 @@ class Calculator extends Component {
   equalityHandler() {
     const { a, b, operation } = this.state;
     if (operation !== '') {
+      if (a.slice(-1) === '.') {
+        this.setState({ a: a.slice(0, -1) });
+      }
+      if (b.slice(-1) === '.') {
+        this.setState({ b: b.slice(0, -1) });
+      }
       const toBeDisplayed = eval(`${parseFloat(a)} ${operation} ${parseFloat(b)}`);
       this.setState({
         displayed: toBeDisplayed,
@@ -68,6 +74,15 @@ class Calculator extends Component {
     }
   }
 
+  addComa() {
+    const { a, b, operation } = this.state;
+    if (operation === '' && !a.includes('.')) {
+      this.setState({ a: a.concat('.'), displayed: a.concat('.') });
+    } else if (operation !== '' && !b.includes(',')) {
+      this.setState({ b: b.concat('.'), displayed: b.concat('.') });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -77,6 +92,7 @@ class Calculator extends Component {
           addDigit={digit => this.addDigit(digit)}
           equalityHandler={() => this.equalityHandler()}
           reverseSign={() => this.reverseSign()}
+          addComa={() => this.addComa()}
         />
       </div>
     );
