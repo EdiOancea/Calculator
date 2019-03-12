@@ -17,6 +17,23 @@ class Calculator extends Component {
     this.setState({ a: '0', b: '0', operation: '', displayed: '0' });
   }
   
+  addDigit(digit) {
+    const { a, b, operation } = this.state;
+    if (operation === '') {
+      if (a === '0') {
+        this.setState({ a: digit, displayed: digit });
+      } else if (a.length < 9) {
+        this.setState({ a: a.concat(digit), displayed: a.concat(digit) });
+      }
+    } else {
+      if (b === '0') {
+        this.setState({ b: digit, displayed: digit });
+      } else if (b.length < 9) {
+        this.setState({ b: b.concat(digit), displayed: b.concat(digit) });
+      }
+    }
+  }
+
   equalityHandler() {
     const { a, b, operation } = this.state;
     if (operation !== '') {
@@ -37,6 +54,7 @@ class Calculator extends Component {
         <Buttons 
           equalityHandler={() => this.equalityHandler()}
           clear={()=> this.clear()}
+          addDigit={digit => this.addDigit(digit)}
         />
       </div>
     );
