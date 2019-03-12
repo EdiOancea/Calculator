@@ -2,17 +2,17 @@ import React from 'react';
 import Button from './Button';
 import styles from 'styled-components';
 
-const Buttons = ({ clear, addDigit, equalityHandler }) => {
+const Buttons = ({ clear, addDigit, equalityHandler, reverseSign }) => {
   const Box = styles.div`
     width: 200px;
     height: 250px;
     overflow-y: auto;
   `;
-  
+
   return(
     <Box>
       <Button text={'AC'} color={'darkGray'} onClick={clear}/>
-      <Button text={'+/-'} color={'darkGray'}/>
+      <Button text={'+/-'} color={'darkGray'} onClick={reverseSign}/>
       <Button text={'%'} color={'darkGray'}/>
       <Button text={'÷'} color={'orange'}/>
       <Button text={'7'} onClick={() => addDigit('7')}/>
