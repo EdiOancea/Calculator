@@ -12,6 +12,8 @@ const Buttons = ({ clear, addDigit, equalityHandler, reverseSign, addComa, setBi
   const buttonFunction = symbol => {
     if (symbol.length === 1 && symbol >= '0' && symbol <= '9') {
       return () => addDigit(symbol);
+    } else if ('+-x%÷'.includes(symbol)) {
+      return () => setBinaryOperator(symbol);
     }
 
     switch (symbol) {
@@ -26,21 +28,6 @@ const Buttons = ({ clear, addDigit, equalityHandler, reverseSign, addComa, setBi
         break;
       case '=':
         return equalityHandler;
-        break;
-      case '+':
-        return () => setBinaryOperator('+');
-        break;
-      case '-':
-        return () => setBinaryOperator('-');
-        break;
-      case 'x':
-        return () => setBinaryOperator('*');
-        break;
-      case '÷':
-        return () => setBinaryOperator('/');
-        break;
-      case '%':
-        return () => setBinaryOperator('%');
         break;
       default:
         return null;
@@ -67,7 +54,6 @@ const Buttons = ({ clear, addDigit, equalityHandler, reverseSign, addComa, setBi
     { text: '0', color: 'gray', size: 'big' },
     { text: ',', color: 'gray', size: 'small' },
     { text: '=', color: 'orange', size: 'small' },
-
   ]
 
   return(
@@ -78,8 +64,7 @@ const Buttons = ({ clear, addDigit, equalityHandler, reverseSign, addComa, setBi
             onClick={buttonFunction(buttonConfig.text)}
             size={buttonConfig.size}
             />;
-          })
-    }
+          })}
     </Box>
   );
 };
